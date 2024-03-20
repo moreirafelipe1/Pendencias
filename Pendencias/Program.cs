@@ -10,7 +10,6 @@ internal class Program
 	{
 		var json = File.ReadAllText("Dados.json");
 		List<Item> items = JsonConvert.DeserializeObject<List<Item>>(json);
-		int countRetorno = 0;
 
 		List<Item> roupaLimpa = new List<Item>();
 		List<Item> roupaSuja = new List<Item>();
@@ -27,21 +26,30 @@ internal class Program
 			}
 		}
 
+		List<Item> roupasPendentes = new List<Item>();
 		foreach (var item in roupaSuja)
 		{
+			bool retornou = false;
 			if (item.dateTime < DateTime.Now.AddMinutes(-30))
 			{
 				foreach (var itemLimpo in roupaLimpa)
 				{
 					if (itemLimpo.id == item.id && itemLimpo.dateTime > item.dateTime)
 					{
-						countRetorno++;
+						retornou = true;
+						break;
 					}
 				}
 			}
+			if (!retornou)
+			{
+				roupasPendentes.Add(item);
+			}
 		}
 
-		var countPendencias = roupaSuja.Count - countRetorno;
-		Console.WriteLine(countPendencias);
+		foreach (var item in roupasPendentes)
+		{
+			Console.WriteLine(item.id);
+		}
 	}
 }

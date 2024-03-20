@@ -40,16 +40,16 @@ internal class Program
 						break;
 					}
 				}
-			}
-			if (!retornou)
-			{
-				roupasPendentes.Add(item);
+				if (!retornou)
+				{
+					roupasPendentes.Add(item);
+				}
 			}
 		}
 
 		foreach (var item in roupasPendentes)
 		{
-			Console.WriteLine(item.id);
+			Console.WriteLine($"Id: {item.id}");
 		}
 	}
 }

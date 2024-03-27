@@ -30,7 +30,7 @@ internal class Program
 		foreach (var item in roupaSuja)
 		{
 			bool retornou = false;
-			if (item.dateTime < DateTime.Now.AddMinutes(-30))
+			if (item.dateTime < DateTime.Now.AddHours(-45))
 			{
 				foreach (var itemLimpo in roupaLimpa)
 				{
@@ -49,7 +49,7 @@ internal class Program
 
 		foreach (var item in roupasPendentes)
 		{
-			Console.WriteLine($"Id: {item.id}");
+			Console.WriteLine($"Id: {item.id}, Tipo: {item.assetTypeName}");
 		}
 	}
 }
